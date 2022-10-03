@@ -27,9 +27,9 @@ public class Main {
         cliente1.nome = "Fulano 1";
         cliente1.cpf = "111.222.333-44";
         cliente1.contatos[0] = contato1Cliente1;
-        cliente1.contatos[1] = contato2Cliente1;
+        /*cliente1.contatos[1] = contato2Cliente1;*/
         cliente1.enderecos[0] = endereco1Cliente1;
-        cliente1.enderecos[1] = endereco1Cliente1;
+        /*cliente1.enderecos[1] = endereco1Cliente1;*/
 
         // instanciando a primeira conta corrente com o cliente1
         ContaCorrente contaCliente1 = new ContaCorrente();
@@ -81,16 +81,46 @@ public class Main {
         contaCliente2.chequeEspecial = 200;
 
         // testando os saldos e fazendo transferencia de 500 DBC-coins da contaCliente1 para contaCliente2
-        contaCliente1.retornarSaldoComChequeEspecial();
-        contaCliente2.retornarSaldoComChequeEspecial();
+        contaCliente1.imprimirContaCorrente();
+        contaCliente2.imprimirContaCorrente();
         contaCliente1.transferir(contaCliente2, 500);
         contaCliente1.retornarSaldoComChequeEspecial();
         contaCliente2.retornarSaldoComChequeEspecial();
-        System.out.println();
-
         // imprimindo as duas contas
         contaCliente1.imprimirContaCorrente();
         contaCliente2.imprimirContaCorrente();
+        System.out.println("FIM DO HOMEWORK");
+        System.out.println();
+        System.out.println();
 
+
+
+        // testes com método transferir()
+        System.out.println("INICIO DOS TESTES - método transferir()");
+        contaCliente1.transferir(contaCliente2, 0);
+        contaCliente1.transferir(contaCliente2, -1);
+        contaCliente1.transferir(contaCliente2, 500);
+        contaCliente1.transferir(contaCliente2, 1);
+        contaCliente1.transferir(contaCliente2, 200);
+        contaCliente1.imprimirContaCorrente();
+        contaCliente2.imprimirContaCorrente();
+        System.out.println();
+
+        // testes com método sacar()
+        System.out.println("INICIO DOS TESTES - método sacar()");
+        contaCliente1.sacar(0);
+        contaCliente1.sacar(-1);
+        contaCliente1.sacar(1);
+        contaCliente1.sacar(198);
+        contaCliente1.sacar(1);
+        contaCliente1.imprimirContaCorrente();
+        System.out.println();
+
+        // testando valores null no cliente imprimirEnderecos() e imprimirContatos()
+        System.out.println("INICIO DOS TESTES - imprimirEnderecos() e imprimirContatos()");
+        cliente1.imprimirCliente();
+        cliente1.imprimirEnderecos();
+        cliente1.imprimirContatos();
+        System.out.println("FIM DOS TESTES");
     }
 }

@@ -6,13 +6,23 @@ public class Cliente {
 
 
     public void imprimirContatos() {
-        contatos[0].imprimirContato();
-        contatos[1].imprimirContato();
+        if (contatos != null) {
+            for (Contato i: contatos) {
+                if (i != null) {
+                    i.imprimirContato();
+                }
+            }
+        }
     }
 
     public void imprimirEnderecos(){
-        enderecos[0].imprimirEndereco();
-        enderecos[1].imprimirEndereco();
+        if (enderecos != null) {
+            for (Endereco i: enderecos) {
+                if (i != null) {
+                    i.imprimirEndereco();
+                }
+            }
+        }
     }
 
     public void imprimirCliente(){

@@ -16,46 +16,37 @@ public class ContaCorrente {
     }
 
     public boolean sacar(double valor) {
-        if (saldo+chequeEspecial >= valor){
-            if (saldo >= valor){
-                 saldo -= valor;
-                System.out.println("Você fez o saque usando apenas o seu saldo!");
-            } else {
-                saldo = 0;
-                chequeEspecial -= (saldo-valor);
-                System.out.println("Você fez o saque usando seu saldo e seu cheque especial!");
-            }
-           return true;
-        } else {
-            System.out.println("Seu saldo + chequeEspecial são insuficientes.");
+        if (valor <= 0) {
+            System.out.println("Não pode sacar valores negativos!");
             return false;
         }
+        if (!(valor <= retornarSaldoComChequeEspecial())){
+            System.out.println("Não pode sacar valores maiores que o SALDO e o CHEQUE ESPECIAL!");
+            return false;
+        }
+        saldo -= valor;
+        System.out.println("Saque da conta " + numeroConta + " realizado no valor de R$" + valor);
+        return true;
     }
 
     public boolean depositar(double valor){
-        if (valor > 0) {
-            saldo += valor;
-            System.out.println("Você depositou R$" + valor + ", agora seu saldo é R$" + saldo);
-            return true;
-        } else {
-            System.out.println("Você não pode depositar valores negativos.");
+        if (valor<=0) {
+            System.out.println("Não pode depositar valores negativos!");
             return false;
         }
+        saldo += valor;
+        System.out.println("Depositado o valor R$" + valor + " na conta " + numeroConta);
+        return true;
     }
 
     public double retornarSaldoComChequeEspecial() {
-        System.out.println("SaldoComChequeEspecial{" +
-                "saldo='" + saldo + '\'' +
-                ", chequeEspecial='" + chequeEspecial + '\'' +
-                '}');
-        return this.saldo + this.chequeEspecial;
+        return saldo + chequeEspecial;
     }
 
     public boolean transferir(ContaCorrente numeroContaDestino, double valor){
-        if (valor > 0){
-            this.saldo -= valor;
-            numeroContaDestino.saldo += valor;
-            System.out.println("Você transferiu R$" + valor + " para o cliente " + numeroContaDestino.cliente.nome + ", conta " + numeroContaDestino.numeroConta);
+        if (sacar(valor)){
+            numeroContaDestino.depositar(valor);
+            System.out.println("Conta " + numeroConta + " transferiu R$" + valor + " para conta " + numeroContaDestino.numeroConta);
             return true;
         }
         System.out.println("Não pode transferir valores negativos.");
