@@ -12,7 +12,7 @@ public class Exercicio08 {
     public static void main(String[] args){
         Scanner input = new Scanner(System.in);
 
-        int vetor[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        int vetor[] = {1, 2, 3, 5, 5, 13, 7, 8, 9, 10};
         int numero;
         int numerosIguais = 0;
         int numerosMenores = 0;
