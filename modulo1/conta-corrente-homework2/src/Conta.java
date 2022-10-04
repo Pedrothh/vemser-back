@@ -55,11 +55,11 @@ public abstract class Conta implements Movimentacao{
             System.out.println("Não pode sacar valores negativos!");
             return false;
         }
-        if(valor > getSaldo()){
+        if(valor > this.getSaldo()){
             System.out.println("Não pode sacar valores maiores que o SALDO e o CHEQUE ESPECIAL!");
             return false;
         }
-        setSaldo(getSaldo() - valor);
+        setSaldo(this.getSaldo() - valor);
         return true;
     }
 
