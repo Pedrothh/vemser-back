@@ -7,11 +7,11 @@ public class Cliente {
     public Cliente(){
     }
 
-    public Cliente(String nome, String cpf, Contato contatos, Endereco enderecos) {
+    public Cliente(String nome, String cpf, Contato contatos[], Endereco enderecos[]) {
         this.nome = nome;
         this.cpf = cpf;
-        this.contatos[0] = contatos;
-        this.enderecos[0] = enderecos;
+        this.contatos = contatos;
+        this.enderecos = enderecos;
     }
 
     public String getNome() {
@@ -34,16 +34,16 @@ public class Cliente {
         return contatos;
     }
 
-    public void setContatos(Contato contatos) {
-        this.contatos[0] = contatos;
+    public void setContatos(Contato contatos[]) {
+        this.contatos = contatos;
     }
 
     public Endereco[] getEnderecos() {
         return enderecos;
     }
 
-    public void setEnderecos(Endereco enderecos) {
-        this.enderecos[0] = enderecos;
+    public void setEnderecos(Endereco enderecos[]) {
+        this.enderecos = enderecos;
     }
 
     public void imprimirContatos() {

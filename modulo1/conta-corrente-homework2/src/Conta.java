@@ -51,35 +51,40 @@ public abstract class Conta implements Movimentacao{
 
     @Override
     public boolean sacar(double valor) {
-        if (valor <= 0) {
+        if (valor <= 0 || valor > getSaldo()) {
             System.out.println("Não pode sacar valores negativos!");
             return false;
+        } else {
+            setSaldo(getSaldo() - valor);
+            System.out.println("Saque de Conta Poupança! Sacado R$" +  valor + " da conta de " + getCliente().getNome());
+            return true;
         }
-        if(valor > this.getSaldo()){
-            System.out.println("Não pode sacar valores maiores que o SALDO e o CHEQUE ESPECIAL!");
-            return false;
-        }
-        setSaldo(this.getSaldo() - valor);
-        return true;
     }
+
+
 
     @Override
     public boolean depositar(double valor){
         if (valor<=0) {
             System.out.println("Não pode depositar valores negativos!");
             return false;
+        } else {
+            setSaldo(getSaldo() + valor);
+            System.out.println("Depositado R$" +  valor + " na conta de " + getCliente().getNome() );
+            return true;
         }
-        setSaldo(getSaldo() + valor);;
-        return true;
     }
 
     @Override
     public boolean transferir(Conta conta, double valor){
+        System.out.println("Tentativa de Transferência de valores...");
         if (this.sacar(valor)){
             conta.depositar(valor);
+            System.out.println("Transferência de valores efetuada!");
             return true;
+        } else {
+            System.out.println("Não pode transferir valores negativos.");
+            return false;
         }
-        System.out.println("Não pode transferir valores negativos.");
-        return false;
     }   
 }

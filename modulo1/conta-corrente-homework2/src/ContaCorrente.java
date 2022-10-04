@@ -10,7 +10,7 @@ public class ContaCorrente extends Conta implements Impressao {
     }
 
     public double retornarSaldoComChequeEspecial() {
-        return this.getSaldo() + this.chequeEspecial;
+        return getSaldo() + this.chequeEspecial;
     }
 
     public void setChequeEspecial(double chequeEspecial) {
@@ -19,16 +19,14 @@ public class ContaCorrente extends Conta implements Impressao {
 
     @Override
     public boolean sacar(double valor) {
-        if (valor <= 0) {
+        if (valor <= 0 || valor > retornarSaldoComChequeEspecial()) {
             System.out.println("Não pode sacar valores negativos!");
             return false;
+        } else {
+            setSaldo(getSaldo() - valor);
+            System.out.println("Saque de Conta Corrente! Sacado R$" +  valor + " da conta de " + getCliente().getNome());
+            return true;
         }
-        if(valor > this.getSaldo() + chequeEspecial){
-            System.out.println("Não pode sacar valores maiores que o SALDO e o CHEQUE ESPECIAL!");
-            return false;
-        }
-        setSaldo(this.getSaldo() - valor);
-        return true;
     }
 
     @Override
