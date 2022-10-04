@@ -12,6 +12,7 @@ public class ContaPoupanca extends Conta implements Impressao{
         setSaldo(getSaldo() * JUROS_MENSAL);
     }
 
+    @Override
     public void imprimir() {
         System.out.println( "Conta {cliente=" + getCliente().getNome() + 
                             ", numeroConta=" + getNumeroConta() + ", agencia=" + getAgencia() + ", saldo=" + getSaldo() + 

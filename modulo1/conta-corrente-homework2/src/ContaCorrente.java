@@ -17,6 +17,7 @@ public class ContaCorrente extends Conta implements Impressao {
         this.chequeEspecial = chequeEspecial;
     }
 
+    @Override
     public boolean sacar(double valor) {
         if (valor <= 0) {
             System.out.println("Não pode sacar valores negativos!");
@@ -30,6 +31,7 @@ public class ContaCorrente extends Conta implements Impressao {
         return true;
     }
 
+    @Override
     public void imprimir() {
         System.out.println( "Conta {cliente=" + getCliente().getNome() + 
                             ", numeroConta=" + getNumeroConta() + ", agencia=" + getAgencia() + ", saldo=" + getSaldo() + 

@@ -49,6 +49,7 @@ public abstract class Conta implements Movimentacao{
         this.saldo = saldo;
     }
 
+    @Override
     public boolean sacar(double valor) {
         if (valor <= 0) {
             System.out.println("Não pode sacar valores negativos!");
@@ -62,6 +63,7 @@ public abstract class Conta implements Movimentacao{
         return true;
     }
 
+    @Override
     public boolean depositar(double valor){
         if (valor<=0) {
             System.out.println("Não pode depositar valores negativos!");
@@ -71,6 +73,7 @@ public abstract class Conta implements Movimentacao{
         return true;
     }
 
+    @Override
     public boolean transferir(Conta conta, double valor){
         if (this.sacar(valor)){
             conta.depositar(valor);
