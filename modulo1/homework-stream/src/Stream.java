@@ -66,7 +66,15 @@ public class Stream {
                 .map(pessoa -> new Salario(pessoa.getId(), pessoa.getSalario()))
                 .toList();
         minhaLista.stream()
-                        .forEach(salario -> System.out.println(salario));
+                .forEach(salario -> System.out.println(salario));
+
+        /*System.out.println("Segundo metodo de implementação, por inferência do sout");
+        lista.stream()
+                        .map(pessoa -> new Salario(pessoa.getId(), pessoa.getSalario()))
+                                .toList()
+                                        .forEach(System.out::println);*/
+
+
 
         System.out.println();
         System.out.println("8- retornar um HashMap (estrutura de dados, e não uma função map) contendo os ids e os nomes dos colaboradores");
@@ -74,6 +82,7 @@ public class Stream {
         Map<Integer, String> colaboradoresIdNome = lista.stream()
                 .collect(Collectors.toMap(Pessoa::getId, Pessoa::getNome));
         System.out.println(colaboradoresIdNome);
+
 
         System.out.println();
         System.out.println("9- com o mapa da 8, retornar o nome com o id=2");
@@ -89,12 +98,19 @@ public class Stream {
         //10- verificar se tem alguém que contenha o nome "Paulo" (containsignorecase) na lista e retornar o primeiro elemento que encontrar (findFirst).
         //    Imprimir o nome e salário dessa pessoa
         Optional<Pessoa> procuraPaulo = lista.stream()
-                .filter(pessoa -> pessoa.getNome().equalsIgnoreCase("Paulo"))
+                .filter(pessoa -> pessoa.getNome().toLowerCase().contains("paulo"))
                 .findFirst();
         procuraPaulo.ifPresent(pessoa -> System.out.println("Pessoa{" +
                 "nome=" + pessoa.getNome() +
                 ", salario=" + pessoa.getSalario() +
                 '}'));
+
+        if (lista.contains(procuraPaulo)) {
+            System.out.println("Pessoa{" +
+                    "nome=" + procuraPaulo.get().getNome() +
+                    ", salario=" + procuraPaulo.get().getSalario() +
+                    '}');
+        }
 
     }
 
